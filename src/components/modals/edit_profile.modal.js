@@ -36,10 +36,24 @@ export default function EditProdileModal({ onClose, isOpen }) {
       size="xl"
     >
       <ModalOverlay />
-      <ModalContent bg="gray.100">
-        <Tabs orientation="vertical">
-          <TabList borderLeft="none" borderRightWidth="1px" w="250px">
-            <Text p="30px" textAlign="center" fontWeight="bold" fontSize="lg">
+      <ModalContent
+        bg="gray.100"
+        rounded={['0', '0', 'lg']}
+        h={['100%', '100%', 'auto']}
+      >
+        <Tabs orientation={['horizontal', 'horizontal', 'vertical']}>
+          <TabList
+            borderLeft="none"
+            borderRightWidth={['0', '0', '1px']}
+            w={['100%', '100%', '250px']}
+            p="30px"
+          >
+            <Text
+              d={['none', 'none', 'block']}
+              textAlign="center"
+              fontWeight="bold"
+              fontSize="lg"
+            >
               Edit profile
             </Text>
             <Tab textAlign="left" border="none">
