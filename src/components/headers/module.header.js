@@ -14,7 +14,7 @@ export default function ModuleHeader({ course = {} }) {
         name={course.title || 'Learn Base'}
         src={course.cover}
       />
-      <Box>
+      <Box mt={['20px', '20px', '0']} ml={['0', '0', '20px']}>
         <Text fontSize="2xl" fontWeight="500">
           {course.title}
         </Text>
