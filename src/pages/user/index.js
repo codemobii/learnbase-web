@@ -18,18 +18,7 @@ export default function Profile() {
 
   return (
     <ProfileLayout isMain={true}>
-      <BoxCard>
-        <Box h="100px">
-          <Image
-            src="https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-content/uploads/2016/03/Blog_Best-web-designer.jpg.webp"
-            w="100%"
-            h="100%"
-            objectFit="cover"
-            rounded="lg"
-          />
-        </Box>
-      </BoxCard>
-      <SimpleGrid py="30px" columns={['1', '1', '2']} spacing="6">
+      <SimpleGrid mb="30px" columns={['1', '1', '1']} spacing="6">
         <ListCard
           title="Courses progress"
           button="Register course"
@@ -42,13 +31,13 @@ export default function Profile() {
                 title={c.title}
                 img={c.cover.url}
                 id={c.course}
-                progress="4"
+                progress="50"
               />
             ))}
           </Stack>
         </ListCard>
-        <ListCard title="Certificates">
-          <SimpleGrid columns="3" spacing="4">
+        <ListCard onClick title="Certificates">
+          <SimpleGrid columns={[3, 3, 6]} spacing="4">
             <CertificateCard
               title="Python Core"
               img="https://sololearnuploads.azureedge.net/uploads/courses/1073.png"
@@ -64,6 +53,22 @@ export default function Profile() {
             <CertificateCard
               title="CSS"
               img="https://sololearnuploads.azureedge.net/uploads/courses/1023.png"
+            />
+            <CertificateCard
+              title="JavaScript"
+              img="https://sololearnuploads.azureedge.net/uploads/courses/1024.png"
+            />
+            <CertificateCard
+              title="CSS"
+              img="https://sololearnuploads.azureedge.net/uploads/courses/1023.png"
+            />
+            <CertificateCard
+              title="JavaScript"
+              img="https://sololearnuploads.azureedge.net/uploads/courses/1024.png"
+            />
+            <CertificateCard
+              title="Python Core"
+              img="https://sololearnuploads.azureedge.net/uploads/courses/1073.png"
             />
             <CertificateCard
               title="JavaScript"

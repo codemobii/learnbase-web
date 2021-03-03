@@ -13,6 +13,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NavButton from '../buttons/nav.button';
 import Cookies from 'js-cookie';
+import logo from '../../logo.svg';
 
 // Set the links in an array
 
@@ -36,11 +37,7 @@ export default function MainHeader() {
           bg="white"
         >
           <Link to="/">
-            <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/SoloLearn_logo.svg/1280px-SoloLearn_logo.svg.png"
-              alt="LearnBase Logo"
-              w="150px"
-            />
+            <Image src={logo} alt="LearnBase Logo" w="170px" />
           </Link>
           <Spacer />
           <HStack spacing="15px" d={['none', 'none', 'flex']}>

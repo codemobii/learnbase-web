@@ -18,7 +18,13 @@ export default function ProfileInfoHeader() {
   const { loading, handleLogout } = AuthUtils();
 
   //
-  const { userInfo, handleGetUser } = ProfileUtils();
+  const {
+    userInfo,
+    uploading,
+    handleProfilePicUpdate,
+    handleGetUser,
+    handleUpdateUser,
+  } = ProfileUtils();
 
   //
   useEffect(() => {
@@ -72,7 +78,18 @@ export default function ProfileInfoHeader() {
       </Flex>
 
       {/* The Edit Profile Modal */}
-      <EditProdileModal isOpen={isOpen} onClose={onClose} />
+      <EditProdileModal
+        isOpen={isOpen}
+        handleProfilePicUpdate={handleProfilePicUpdate}
+        uploading={uploading}
+        onClose={onClose}
+        userInfo={userInfo}
+        fName={userInfo.firstName}
+        lName={userInfo.lastName}
+        uBio={userInfo.bio}
+        handleUpdateUser={handleUpdateUser}
+        loading={loading}
+      />
     </Box>
   );
 }

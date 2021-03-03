@@ -233,7 +233,7 @@ const CourseUtils = () => {
     })
       .then(res => {
         const data = res.data.courses;
-        data.length = 3;
+        // data.length = 3;
         setCourses(data);
       })
       .catch(er => {

@@ -1,8 +1,6 @@
 import {
   Avatar,
   Box,
-  Button,
-  Flex,
   FormLabel,
   HStack,
   IconButton,
@@ -11,126 +9,163 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalHeader,
   ModalOverlay,
-  Spacer,
   Stack,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
   Textarea,
 } from '@chakra-ui/react';
-import React from 'react';
-import { BsTrashFill } from 'react-icons/bs';
+import React, { useState } from 'react';
+import { BsTrashFill, BsUpload } from 'react-icons/bs';
 import SolidButton from '../buttons/solid.button';
 
-export default function EditProdileModal({ onClose, isOpen }) {
+export default function EditProdileModal({
+  onClose,
+  isOpen,
+  handleProfilePicUpdate,
+  handleUpdateUser,
+  uploading,
+  loading,
+  userInfo,
+  fName = '',
+  lName = '',
+  uBio = '',
+}) {
+  // State managers
+  const [firstName, setFirstName] = useState(fName);
+  const [lastName, setLastName] = useState(lName);
+  const [bio, setBio] = useState(uBio);
+
+  const data = {
+    firstName: firstName,
+    lastName: lastName,
+    bio: bio,
+  };
+
   return (
     <Modal
-      isCentered
       onClose={onClose}
       isOpen={isOpen}
       motionPreset="slideInBottom"
-      size="xl"
+      size="md"
+      isCentered
     >
       <ModalOverlay />
-      <ModalContent
-        bg="gray.100"
-        rounded={['0', '0', 'lg']}
-        h={['100%', '100%', 'auto']}
-      >
-        <Tabs orientation={['horizontal', 'horizontal', 'vertical']}>
-          <TabList
-            borderLeft="none"
-            borderRightWidth={['0', '0', '1px']}
-            w={['100%', '100%', '250px']}
-            p="30px"
-          >
-            <Text
-              d={['none', 'none', 'block']}
-              textAlign="center"
-              fontWeight="bold"
-              fontSize="lg"
-            >
-              Edit profile
-            </Text>
-            <Tab textAlign="left" border="none">
-              Information
-            </Tab>
-            <Tab isDisabled>Password</Tab>
-          </TabList>
-
-          <TabPanels>
-            <TabPanel p="30px">
-              <Flex alignItems="center">
-                <Text textAlign="center" fontWeight="bold" fontSize="md">
-                  Information
-                </Text>
-                <Spacer />
-                <ModalCloseButton />
-              </Flex>
-              <ModalBody>
-                <Stack mt="20px" spacing="4">
-                  <HStack alignItems="flex-end">
-                    <Avatar
-                      size="lg"
-                      name="Prosper Otemuyiwa"
-                      src="https://bit.ly/prosper-baba"
-                    />
-                    <Stack ml="20px">
-                      <HStack>
-                        <SolidButton size="sm" title="Change" />
-                        <IconButton
-                          variant="outline"
-                          size="sm"
-                          icon={<BsTrashFill />}
-                        />
-                      </HStack>
-                      <FormLabel fontSize="xs">
-                        JPG, GIF or PNG. Max size 800K
-                      </FormLabel>
-                    </Stack>
-                  </HStack>
-                  <Box>
-                    <FormLabel fontSize="xs">Email address</FormLabel>
-                    <Input
+      <ModalContent bg="gray.100" rounded={['0', '0', 'lg']}>
+        <ModalHeader>Edit profile</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Stack mt="20px" spacing="4">
+            <HStack alignItems="flex-end">
+              <Avatar
+                size="xl"
+                name={userInfo.firstName + ' ' + userInfo.lastName}
+                src={
+                  userInfo.profilePic ||
+                  'https://assets.materialup.com/uploads/b78ca002-cd6c-4f84-befb-c09dd9261025/preview.png'
+                }
+              />
+              <Stack ml="20px">
+                <HStack>
+                  <Box pos="relative">
+                    <SolidButton
+                      loading={uploading}
+                      icon={<BsUpload />}
                       size="sm"
-                      bg="white"
-                      variant="outline"
-                      placeholder="Outline"
+                      title="Change"
+                    />
+                    <input
+                      value=""
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        height: '100%',
+                        width: 100,
+                        cursor: 'pointer',
+                        opacity: 0,
+                      }}
+                      id="imageFile"
+                      type="file"
+                      onChange={handleProfilePicUpdate}
                     />
                   </Box>
-                  <Box>
-                    <FormLabel fontSize="xs">Email address</FormLabel>
-                    <Input
-                      size="sm"
-                      bg="white"
-                      variant="outline"
-                      placeholder="Outline"
-                    />
-                  </Box>
-                  <Box>
-                    <FormLabel fontSize="xs">Email address</FormLabel>
-                    <Textarea
-                      size="sm"
-                      bg="white"
-                      placeholder="Here is a sample placeholder"
-                    />
-                  </Box>
-                  <SolidButton size="sm" title="Save Changes" />
-                </Stack>
-              </ModalBody>
-            </TabPanel>
-            <TabPanel>
-              <p>two!</p>
-            </TabPanel>
-            <TabPanel>
-              <p>three!</p>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+                  <IconButton
+                    variant="outline"
+                    size="sm"
+                    icon={<BsTrashFill />}
+                  />
+                </HStack>
+                <FormLabel fontSize="xs">
+                  JPG, GIF or PNG. Max size 800K
+                </FormLabel>
+              </Stack>
+            </HStack>
+            <Box>
+              <FormLabel fontSize="xs">First name</FormLabel>
+              <Input
+                bg="white"
+                variant="outline"
+                placeholder="First name"
+                rounded="lg"
+                value={firstName}
+                onChange={e => setFirstName(e.target.value)}
+                size="sm"
+              />
+            </Box>
+            <Box>
+              <FormLabel fontSize="xs">Last name</FormLabel>
+              <Input
+                size="sm"
+                bg="white"
+                variant="outline"
+                placeholder="Last name"
+                rounded="lg"
+                value={lastName}
+                onChange={e => setLastName(e.target.value)}
+              />
+            </Box>
+            <Box>
+              <FormLabel fontSize="xs">Email address</FormLabel>
+              <Input
+                bg="white"
+                variant="outline"
+                placeholder="Email address"
+                rounded="lg"
+                value={userInfo.email}
+                disabled
+                size="sm"
+              />
+            </Box>
+            <Box>
+              <FormLabel fontSize="xs">Phone number</FormLabel>
+              <Input
+                bg="white"
+                variant="outline"
+                placeholder="Phone number"
+                value={'+234' + userInfo.phone}
+                rounded="lg"
+                disabled
+                size="sm"
+              />
+            </Box>
+            <Box>
+              <FormLabel fontSize="xs">Bio</FormLabel>
+              <Textarea
+                size="sm"
+                bg="white"
+                placeholder="Your description"
+                rounded="lg"
+                value={bio}
+                onChange={e => setBio(e.target.value)}
+              />
+            </Box>
+            <SolidButton
+              loading={loading}
+              onClick={() => handleUpdateUser(data)}
+              size="md"
+              title="Save Changes"
+            />
+          </Stack>
+        </ModalBody>
       </ModalContent>
     </Modal>
   );
