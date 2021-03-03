@@ -10,6 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import logo from '../../logo.svg';
 
 export default function Footer() {
   return (
@@ -27,10 +28,7 @@ export default function Footer() {
             href="/"
             rel="home"
           >
-            <Image
-              w="150px"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/SoloLearn_logo.svg/1280px-SoloLearn_logo.svg.png"
-            />
+            <Image src={logo} alt="LearnBase Logo" w="170px" />
           </a>
           <Stack
             my={{ base: '6', md: 0 }}
