@@ -33,7 +33,7 @@ export default function Signin() {
         onChange={e => setEmail(e.target.value)}
         title="Email address"
         icon={<BsEnvelopeFill />}
-        type="text"
+        type="email"
       />
       <PasswordInput
         value={password}

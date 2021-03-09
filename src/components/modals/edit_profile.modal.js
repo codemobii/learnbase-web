@@ -28,11 +28,13 @@ export default function EditProdileModal({
   userInfo,
   fName = '',
   lName = '',
+  fullname = '',
   uBio = '',
 }) {
   // State managers
   const [firstName, setFirstName] = useState(fName);
   const [lastName, setLastName] = useState(lName);
+  const [_fullname, set_fullname] = useState(fullname);
   const [bio, setBio] = useState(uBio);
 
   const data = {
@@ -99,30 +101,47 @@ export default function EditProdileModal({
                 </FormLabel>
               </Stack>
             </HStack>
-            <Box>
-              <FormLabel fontSize="xs">First name</FormLabel>
-              <Input
-                bg="white"
-                variant="outline"
-                placeholder="First name"
-                rounded="lg"
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-                size="sm"
-              />
-            </Box>
-            <Box>
-              <FormLabel fontSize="xs">Last name</FormLabel>
-              <Input
-                size="sm"
-                bg="white"
-                variant="outline"
-                placeholder="Last name"
-                rounded="lg"
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-              />
-            </Box>
+            {userInfo.role === 2 ? (
+              <Box>
+                <FormLabel fontSize="xs">School namee</FormLabel>
+                <Input
+                  size="sm"
+                  bg="white"
+                  variant="outline"
+                  placeholder="Fullname"
+                  rounded="lg"
+                  value={_fullname}
+                  onChange={e => set_fullname(e.target.value)}
+                />
+              </Box>
+            ) : (
+              <>
+                <Box>
+                  <FormLabel fontSize="xs">First name</FormLabel>
+                  <Input
+                    bg="white"
+                    variant="outline"
+                    placeholder="First name"
+                    rounded="lg"
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                    size="sm"
+                  />
+                </Box>
+                <Box>
+                  <FormLabel fontSize="xs">Last name</FormLabel>
+                  <Input
+                    size="sm"
+                    bg="white"
+                    variant="outline"
+                    placeholder="Last name"
+                    rounded="lg"
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                  />
+                </Box>
+              </>
+            )}
             <Box>
               <FormLabel fontSize="xs">Email address</FormLabel>
               <Input

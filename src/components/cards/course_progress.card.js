@@ -10,7 +10,7 @@ export default function CourseProgressCard({
   id = '',
 }) {
   return (
-    <Link to={`courses/${id}`}>
+    <Link to={`/courses/${id}`}>
       <Flex align="center" w="100%" h="80px">
         <Avatar size="lg" name={title} src={img} />
         <Flex w="100%" ml="20px" h="100%" align="center">

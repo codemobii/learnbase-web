@@ -18,6 +18,7 @@ export default function Signup() {
   // State managers
   // const [name, setName] = useState('');
   const [firstName, setFirstName] = useState('');
+  const [fullname, setFullname] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,10 +26,11 @@ export default function Signup() {
 
   // Pass the data to the controller
   const data = {
+    fullname: fullname || null,
     email: email,
     password: password,
-    firstName: firstName,
-    lastName: lastName,
+    firstName: firstName || null,
+    lastName: lastName || null,
     phone: phone,
     role: useQuery().get('role') && 2,
   };
@@ -39,20 +41,32 @@ export default function Signup() {
       page="Sign up"
       desc="Sign up to your account using email and password provided during registration."
     >
-      <FormInput
-        value={firstName}
-        onChange={e => setFirstName(e.target.value)}
-        title="First name"
-        icon={<BsPerson />}
-        type="text"
-      />
-      <FormInput
-        value={lastName}
-        onChange={e => setLastName(e.target.value)}
-        title="Last name"
-        icon={<BsPerson />}
-        type="text"
-      />
+      {useQuery().get('role') ? (
+        <FormInput
+          value={fullname}
+          onChange={e => setFullname(e.target.value)}
+          title="School name"
+          icon={<BsPerson />}
+          type="text"
+        />
+      ) : (
+        <>
+          <FormInput
+            value={firstName}
+            onChange={e => setFirstName(e.target.value)}
+            title="First name"
+            icon={<BsPerson />}
+            type="text"
+          />
+          <FormInput
+            value={lastName}
+            onChange={e => setLastName(e.target.value)}
+            title="Last name"
+            icon={<BsPerson />}
+            type="text"
+          />
+        </>
+      )}
       <FormInput
         value={email}
         onChange={e => setEmail(e.target.value)}

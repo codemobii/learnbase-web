@@ -275,6 +275,33 @@ const CourseUtils = () => {
       .finally(() => setLoading(false));
   };
 
+  // Get a module all
+  const handleGetCoursesInstructor = async () => {
+    setLoading(true);
+    await Axios({
+      method: 'GET',
+      url: `${process.env.REACT_APP_API_URL}courses`,
+      params: {
+        institute: user,
+      },
+    })
+      .then(res => {
+        console.log(res);
+        setCourses(res.data.courses);
+      })
+      .catch(er => {
+        console.log(er.response);
+        toast({
+          title: 'Error',
+          description: er.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
   return {
     loading,
     user,
@@ -294,6 +321,7 @@ const CourseUtils = () => {
     handleGetModule,
     handleGetCourse,
     handleStartCourseUser,
+    handleGetCoursesInstructor,
   };
 };
 

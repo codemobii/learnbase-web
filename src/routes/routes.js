@@ -19,11 +19,12 @@ import Read from '../pages/user/read';
 import RegCourse from '../pages/user/reg_course';
 import Result from '../pages/user/result';
 import Cookies from 'js-cookie';
+import Instructor from '../pages/instructor';
+import InstructorCourse from '../pages/instructor/course';
 
 // Pricate route
 function PrivateRoute({ children, ...rest }) {
   const user = Cookies.get('id');
-
   return (
     <Route
       {...rest}
@@ -46,6 +47,9 @@ function PrivateRoute({ children, ...rest }) {
 // Route
 
 export default function Routes() {
+  //
+  const role = Cookies.get('role');
+
   return (
     <Router>
       <MainLayout>
@@ -65,24 +69,37 @@ export default function Routes() {
           <Route exact path="/auth/verify">
             <Verify />
           </Route>
-          <PrivateRoute exact path="/">
-            <Profile />
-          </PrivateRoute>
-          <PrivateRoute exact path="/start_course">
-            <RegCourse />
-          </PrivateRoute>
-          <PrivateRoute exact path="/courses/:id">
-            <Modules />
-          </PrivateRoute>
-          <PrivateRoute exact path="/courses/:id/:moduleId">
-            <Read />
-          </PrivateRoute>
-          <PrivateRoute exact path="/courses/:id/:moduleId/exercise">
-            <Exercise />
-          </PrivateRoute>
-          <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
-            <Result />
-          </PrivateRoute>
+          {role !== '2' ? (
+            <>
+              <PrivateRoute exact path="/">
+                <Profile />
+              </PrivateRoute>
+              <PrivateRoute exact path="/start_course">
+                <RegCourse />
+              </PrivateRoute>
+              <PrivateRoute exact path="/courses/:id">
+                <Modules />
+              </PrivateRoute>
+              <PrivateRoute exact path="/courses/:id/:moduleId">
+                <Read />
+              </PrivateRoute>
+              <PrivateRoute exact path="/courses/:id/:moduleId/exercise">
+                <Exercise />
+              </PrivateRoute>
+              <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
+                <Result />
+              </PrivateRoute>
+            </>
+          ) : (
+            <>
+              <PrivateRoute exact path="/">
+                <Instructor />
+              </PrivateRoute>
+              <PrivateRoute exact path="/courses/:id">
+                <InstructorCourse />
+              </PrivateRoute>
+            </>
+          )}
         </Switch>
       </MainLayout>
     </Router>

@@ -82,6 +82,7 @@ const AuthUtils = () => {
         });
         Cookies.set('token', res.data.token, { expires: 2 });
         Cookies.set('id', res.data.user._id, { expires: 2 });
+        Cookies.set('role', res.data.user.role, { expires: 2 });
         setTimeout(() => {
           window.location.href = '/';
         }, 1000);

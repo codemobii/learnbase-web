@@ -11,7 +11,7 @@ const ProfileUtils = () => {
 
   // State managers
 
-  const [loading, setLoading] = useState(false);
+  const [updating, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [userInfo, setUserInfo] = useState({});
 
@@ -133,7 +133,7 @@ const ProfileUtils = () => {
   };
 
   return {
-    loading,
+    updating,
     userInfo,
     uploading,
     handleProfilePicUpdate,

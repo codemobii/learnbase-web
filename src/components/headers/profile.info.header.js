@@ -20,6 +20,7 @@ export default function ProfileInfoHeader() {
   //
   const {
     userInfo,
+    updating,
     uploading,
     handleProfilePicUpdate,
     handleGetUser,
@@ -49,7 +50,7 @@ export default function ProfileInfoHeader() {
       >
         <Box my={['20px', '20px', '0']}>
           <Text fontSize="2xl" fontWeight="500">
-            {userInfo.firstName + ' ' + userInfo.lastName}
+            {userInfo.fullname || userInfo.firstName + ' ' + userInfo.lastName}
           </Text>
           <Text fontSize="sm" fontWeight="light">
             {userInfo.email}
@@ -88,7 +89,8 @@ export default function ProfileInfoHeader() {
         lName={userInfo.lastName}
         uBio={userInfo.bio}
         handleUpdateUser={handleUpdateUser}
-        loading={loading}
+        loading={updating}
+        fullname={userInfo.fullname}
       />
     </Box>
   );
