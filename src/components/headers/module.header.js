@@ -16,7 +16,7 @@ export default function ModuleHeader({ course = {} }) {
       />
       <Box mt={['20px', '20px', '0']} ml={['0', '0', '20px']}>
         <Text fontSize="2xl" fontWeight="500">
-          {course.title}
+          {course.title} ({course.courseCode})
         </Text>
         <Text fontSize="sm" fontWeight="light">
           {course.desc}
