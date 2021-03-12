@@ -6,7 +6,7 @@ import ResultCard from '../../components/cards/result.card';
 import ProfileLayout from '../../components/layouts/profile.layout';
 import CourseUtils from '../../utils/course.utils';
 
-export default function Result() {
+export default function ViewResult() {
   //
   const { result, score, userInfo, handleGetResult } = CourseUtils();
   const { resultId } = useParams();

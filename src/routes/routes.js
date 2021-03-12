@@ -21,6 +21,13 @@ import Result from '../pages/user/result';
 import Cookies from 'js-cookie';
 import Instructor from '../pages/instructor';
 import InstructorCourse from '../pages/instructor/course';
+import StartCourse from '../pages/instructor/start_course';
+import EditCourse from '../pages/instructor/edit_course';
+import AddModule from '../pages/instructor/add_module';
+import EditModule from '../pages/instructor/edit_module';
+import ViewModule from '../pages/instructor/view_module';
+import ModuleExercises from '../pages/instructor/module_exercises';
+import ViewResult from '../pages/instructor/view_result';
 
 // Pricate route
 function PrivateRoute({ children, ...rest }) {
@@ -95,8 +102,29 @@ export default function Routes() {
               <PrivateRoute exact path="/">
                 <Instructor />
               </PrivateRoute>
+              <PrivateRoute exact path="/start_course">
+                <StartCourse />
+              </PrivateRoute>
               <PrivateRoute exact path="/courses/:id">
                 <InstructorCourse />
+              </PrivateRoute>
+              <PrivateRoute exact path="/:id/edit">
+                <EditCourse />
+              </PrivateRoute>
+              <PrivateRoute exact path="/:id/add_module">
+                <AddModule />
+              </PrivateRoute>
+              <PrivateRoute exact path="/courses/:id/:moduleId">
+                <ViewModule />
+              </PrivateRoute>
+              <PrivateRoute exact path="/courses/:id/:moduleId/edit">
+                <EditModule />
+              </PrivateRoute>
+              <PrivateRoute exact path="/courses/:id/:moduleId/exercises">
+                <ModuleExercises />
+              </PrivateRoute>
+              <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
+                <ViewResult />
               </PrivateRoute>
             </>
           )}

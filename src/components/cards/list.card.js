@@ -11,7 +11,14 @@ export default function ListCard({
   link = null,
 }) {
   return (
-    <Box shadow="base" w="100%" bg="white" rounded={['0', '0', 'lg']} overflow>
+    <Box
+      overflowX="auto"
+      shadow="base"
+      w="100%"
+      bg="white"
+      rounded={['0', '0', 'lg']}
+      overflow
+    >
       <Flex px="20px" align="center" h="60px" borderBottomWidth="1px">
         <Text fontSize="lg" fontWeight="bold">
           {title}
