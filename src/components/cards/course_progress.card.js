@@ -1,4 +1,12 @@
-import { Avatar, Box, Flex, Progress, Spacer, Text } from '@chakra-ui/react';
+import {
+  Avatar,
+  Box,
+  Divider,
+  Flex,
+  Progress,
+  Spacer,
+  Text,
+} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { BiPlayCircle } from 'react-icons/bi';
 import React from 'react';
@@ -29,6 +37,7 @@ export default function CourseProgressCard({
           <BiPlayCircle color="gray" size="32px" />
         </Flex>
       </Flex>
+      <Divider mt="10px" />
     </Link>
   );
 }

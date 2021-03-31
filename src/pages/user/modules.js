@@ -19,7 +19,11 @@ export default function Modules() {
   }, []);
 
   return (
-    <ProfileLayout module={<ModuleHeader course={course} />} isMain={false}>
+    <ProfileLayout
+      loading={loading}
+      module={<ModuleHeader course={course} />}
+      isMain={false}
+    >
       <BoxCard>
         <Stack spacing="6" mb="50px" p={['20px', '20px', '50px']}>
           {modules.map(m => (

@@ -49,7 +49,6 @@ export default function EditProdileModal({
       isOpen={isOpen}
       motionPreset="slideInBottom"
       size="md"
-      isCentered
     >
       <ModalOverlay />
       <ModalContent bg="gray.100" rounded={['0', '0', 'lg']}>

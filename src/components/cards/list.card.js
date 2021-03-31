@@ -16,7 +16,7 @@ export default function ListCard({
       shadow="base"
       w="100%"
       bg="white"
-      rounded={['0', '0', 'lg']}
+      rounded={['0', '0', 'md']}
       overflow
     >
       <Flex px="20px" align="center" h="60px" borderBottomWidth="1px">

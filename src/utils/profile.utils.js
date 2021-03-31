@@ -37,7 +37,11 @@ const ProfileUtils = () => {
           isClosable: true,
         });
       })
-      .finally(() => setLoading(false));
+      .finally(() =>
+        setTimeout(() => {
+          setLoading(false);
+        }, 6000)
+      );
   };
 
   const handleUpdateUser = async data => {

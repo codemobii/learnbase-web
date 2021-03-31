@@ -1,7 +1,5 @@
-import { Box, Image, SimpleGrid, Stack } from '@chakra-ui/react';
+import { SimpleGrid, Stack } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
-import BoxCard from '../../components/cards/box.card';
-import CertificateCard from '../../components/cards/certificate.card';
 import CourseProgressCard from '../../components/cards/course_progress.card';
 import ListCard from '../../components/cards/list.card';
 import ProfileLayout from '../../components/layouts/profile.layout';
@@ -9,7 +7,7 @@ import CourseUtils from '../../utils/course.utils';
 
 export default function Profile() {
   //
-  const { courses, handleGetCoursesFew } = CourseUtils();
+  const { courses, handleGetCoursesFew, loading } = CourseUtils();
 
   //
   useEffect(() => {
@@ -17,26 +15,26 @@ export default function Profile() {
   }, []);
 
   return (
-    <ProfileLayout isMain={true}>
+    <ProfileLayout loading={loading} isMain={true}>
       <SimpleGrid mb="30px" columns={['1', '1', '1']} spacing="6">
         <ListCard
           title="Courses progress"
           button="Register course"
           link="/start_course"
         >
-          <Stack spacing="4" w="100%">
+          <Stack spacing="10px" w="100%">
             {courses.map(c => (
               <CourseProgressCard
                 key={c._id}
                 title={c.title}
                 img={c.cover.url}
-                id={c.course}
+                id={c._id}
                 progress="50"
               />
             ))}
           </Stack>
         </ListCard>
-        <ListCard onClick title="Certificates">
+        {/* <ListCard onClick title="Certificates">
           <SimpleGrid columns={[3, 3, 6]} spacing="4">
             <CertificateCard
               title="Python Core"
@@ -87,7 +85,7 @@ export default function Profile() {
               img="https://sololearnuploads.azureedge.net/uploads/courses/1073.png"
             />
           </SimpleGrid>
-        </ListCard>
+        </ListCard> */}
       </SimpleGrid>
     </ProfileLayout>
   );

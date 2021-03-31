@@ -59,77 +59,75 @@ export default function Routes() {
 
   return (
     <Router>
-      <MainLayout>
-        <Switch>
-          <Route exact path="/auth/sign_in">
-            <Signin />
-          </Route>
-          <Route exact path="/auth/sign_up">
-            <Signup />
-          </Route>
-          <Route exact path="/auth/forgot_password">
-            <ForgotPassword />
-          </Route>
-          <Route exact path="/auth/reset_password">
-            <ResetPassword />
-          </Route>
-          <Route exact path="/auth/verify">
-            <Verify />
-          </Route>
-          {role !== '2' ? (
-            <>
-              <PrivateRoute exact path="/">
-                <Profile />
-              </PrivateRoute>
-              <PrivateRoute exact path="/start_course">
-                <RegCourse />
-              </PrivateRoute>
-              <PrivateRoute exact path="/courses/:id">
-                <Modules />
-              </PrivateRoute>
-              <PrivateRoute exact path="/courses/:id/:moduleId">
-                <Read />
-              </PrivateRoute>
-              <PrivateRoute exact path="/courses/:id/:moduleId/exercise">
-                <Exercise />
-              </PrivateRoute>
-              <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
-                <Result />
-              </PrivateRoute>
-            </>
-          ) : (
-            <>
-              <PrivateRoute exact path="/">
-                <Instructor />
-              </PrivateRoute>
-              <PrivateRoute exact path="/start_course">
-                <StartCourse />
-              </PrivateRoute>
-              <PrivateRoute exact path="/courses/:id">
-                <InstructorCourse />
-              </PrivateRoute>
-              <PrivateRoute exact path="/:id/edit">
-                <EditCourse />
-              </PrivateRoute>
-              <PrivateRoute exact path="/:id/add_module">
-                <AddModule />
-              </PrivateRoute>
-              <PrivateRoute exact path="/courses/:id/:moduleId">
-                <ViewModule />
-              </PrivateRoute>
-              <PrivateRoute exact path="/courses/:id/:moduleId/edit">
-                <EditModule />
-              </PrivateRoute>
-              <PrivateRoute exact path="/courses/:id/:moduleId/exercises">
-                <ModuleExercises />
-              </PrivateRoute>
-              <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
-                <ViewResult />
-              </PrivateRoute>
-            </>
-          )}
-        </Switch>
-      </MainLayout>
+      <Switch>
+        <Route exact path="/auth/sign_in">
+          <Signin />
+        </Route>
+        <Route exact path="/auth/sign_up">
+          <Signup />
+        </Route>
+        <Route exact path="/auth/forgot_password">
+          <ForgotPassword />
+        </Route>
+        <Route exact path="/auth/reset_password">
+          <ResetPassword />
+        </Route>
+        <Route exact path="/auth/verify">
+          <Verify />
+        </Route>
+        {role !== '2' ? (
+          <>
+            <PrivateRoute exact path="/">
+              <Profile />
+            </PrivateRoute>
+            <PrivateRoute exact path="/start_course">
+              <RegCourse />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id">
+              <Modules />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id/:moduleId">
+              <Read />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id/:moduleId/exercise">
+              <Exercise />
+            </PrivateRoute>
+            <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
+              <Result />
+            </PrivateRoute>
+          </>
+        ) : (
+          <>
+            <PrivateRoute exact path="/">
+              <Instructor />
+            </PrivateRoute>
+            <PrivateRoute exact path="/start_course">
+              <StartCourse />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id">
+              <InstructorCourse />
+            </PrivateRoute>
+            <PrivateRoute exact path="/:id/edit">
+              <EditCourse />
+            </PrivateRoute>
+            <PrivateRoute exact path="/:id/add_module">
+              <AddModule />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id/:moduleId">
+              <ViewModule />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id/:moduleId/edit">
+              <EditModule />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id/:moduleId/exercises">
+              <ModuleExercises />
+            </PrivateRoute>
+            <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
+              <ViewResult />
+            </PrivateRoute>
+          </>
+        )}
+      </Switch>
     </Router>
   );
 }

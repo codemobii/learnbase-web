@@ -13,6 +13,7 @@ const AuthUtils = () => {
   // State managers
 
   const [loading, setLoading] = useState(false);
+  const [logging, setLogging] = useState(false);
 
   const token = Cookies.get('token');
   const id = Cookies.get('id');
@@ -219,7 +220,7 @@ const AuthUtils = () => {
 
   // Handle logout
   const handleLogout = async data => {
-    setLoading(true);
+    setLogging(true);
     await Axios({
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -259,12 +260,13 @@ const AuthUtils = () => {
           isClosable: true,
         });
       })
-      .finally(() => setLoading(false));
+      .finally(() => setLogging(false));
   };
 
   return {
     handleRegister,
     loading,
+    logging,
     handleLogin,
     handleForgotPassword,
     handleVerify,

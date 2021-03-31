@@ -8,7 +8,7 @@ import CourseUtils from '../../utils/course.utils';
 
 export default function Result() {
   //
-  const { result, score, userInfo, handleGetResult } = CourseUtils();
+  const { result, loading, score, userInfo, handleGetResult } = CourseUtils();
   const { resultId } = useParams();
 
   //
@@ -17,7 +17,7 @@ export default function Result() {
   }, []);
 
   return (
-    <ProfileLayout isMain={false}>
+    <ProfileLayout loading={loading} isMain={false}>
       <BoxCard>
         <Center pt="30px" justify="center" align="center">
           <Avatar mr="30px" name="Christian Nwamba" src={userInfo.profilePic} />

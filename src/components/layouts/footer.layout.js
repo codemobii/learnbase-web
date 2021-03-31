@@ -38,7 +38,7 @@ export default function Footer() {
             spacing={{ base: '2', md: '8' }}
             textAlign={{ base: 'center', md: 'start' }}
           >
-            <Text>&copy; {new Date().getFullYear()} Envelope Inc</Text>
+            <Text>&copy; {new Date().getFullYear()} Smart-U Consult</Text>
             <Link>Privacy</Link>
             <Link>Terms and Conditions</Link>
           </Stack>
