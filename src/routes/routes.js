@@ -28,6 +28,9 @@ import EditModule from '../pages/instructor/edit_module';
 import ViewModule from '../pages/instructor/view_module';
 import ModuleExercises from '../pages/instructor/module_exercises';
 import ViewResult from '../pages/instructor/view_result';
+import ModuleUnits from '../pages/instructor/module_unit';
+import AddUnit from '../pages/instructor/add_unit';
+import EditUnit from '../pages/instructor/edit_unit';
 
 // Pricate route
 function PrivateRoute({ children, ...rest }) {
@@ -124,6 +127,18 @@ export default function Routes() {
             </PrivateRoute>
             <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
               <ViewResult />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id/:moduleId/units">
+              <ModuleUnits />
+            </PrivateRoute>
+            <PrivateRoute exact path="/courses/:id/:moduleId/units/add">
+              <AddUnit />
+            </PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/courses/:id/:moduleId/units/:unitId/edit"
+            >
+              <EditUnit />
             </PrivateRoute>
           </>
         )}

@@ -30,6 +30,9 @@ const CourseUtils = () => {
   const [adding, setAdding] = useState(false);
   const [results, setResults] = useState([]);
   const [userInfo, setUser] = useState({});
+  const [units, setUnits] = useState([]);
+  const [unit, setUnit] = useState({});
+  const [comments, setComments] = useState([]);
 
   const token = Cookies.get('token');
   const user = Cookies.get('id');
@@ -683,6 +686,181 @@ const CourseUtils = () => {
       .finally(() => setUploading(false));
   };
 
+  // ************************** UNITS ***************************** //
+
+  // Start a course
+  const handleAddUnit = async data => {
+    setLoading(true);
+    await Axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_URL}units`,
+      data,
+    })
+      .then(res => {
+        toast({
+          title: 'Success',
+          description: res.data.message,
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        setTimeout(() => {
+          history.push(`/courses/${data.course}/${data.module}/units`);
+        }, 1000);
+      })
+      .catch(er => {
+        console.log(er.response);
+        toast({
+          title: 'Error',
+          description: er.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
+  // Get a module all
+  const handleEditUnit = async data => {
+    setEditing(true);
+    await Axios({
+      method: 'PUT',
+      url: `${process.env.REACT_APP_API_URL}units/${data.id}`,
+      data,
+    })
+      .then(res => {
+        toast({
+          title: 'Success',
+          description: res.data.message,
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .catch(er => {
+        console.log(er.response);
+        toast({
+          title: 'Error',
+          description: er.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .finally(() => setEditing(false));
+  };
+
+  // Get a units all
+  const handleGetUnits = async module => {
+    setLoading(true);
+    await Axios({
+      method: 'GET',
+      url: `${process.env.REACT_APP_API_URL}units`,
+      params: {
+        module: module,
+      },
+    })
+      .then(res => {
+        setUnits(res.data.units);
+        console.log(res.data);
+      })
+      .catch(er => {
+        console.log(er.response);
+        toast({
+          title: 'Error',
+          description: er.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
+  // Get a module all
+  const handleGetSingleUnit = async id => {
+    setLoading(true);
+    await Axios({
+      method: 'GET',
+      url: `${process.env.REACT_APP_API_URL}units/${id}`,
+    })
+      .then(res => {
+        setUnit(res.data.unit);
+        console.log(res.data);
+      })
+      .catch(er => {
+        console.log(er.response);
+        toast({
+          title: 'Error',
+          description: er.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
+  // Get a units all
+  const handleGetComments = async module => {
+    setLoading(true);
+    await Axios({
+      method: 'GET',
+      url: `${process.env.REACT_APP_API_URL}comments`,
+      params: {
+        module: module,
+      },
+    })
+      .then(res => {
+        setComments(res.data.comments);
+        console.log(res.data);
+      })
+      .catch(er => {
+        console.log(er.response);
+        toast({
+          title: 'Error',
+          description: er.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
+  //
+
+  const handlePostComment = async data => {
+    setLoading(true);
+    await Axios({
+      method: 'POST',
+      url: `${process.env.REACT_APP_API_URL}comments`,
+      data,
+    })
+      .then(res => {
+        toast({
+          title: 'Success',
+          description: res.data.message,
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        handleGetComments(data.module);
+      })
+      .catch(er => {
+        console.log(er.response);
+        toast({
+          title: 'Error',
+          description: er.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .finally(() => setLoading(false));
+  };
+
   return {
     loading,
     user,
@@ -703,6 +881,15 @@ const CourseUtils = () => {
     results,
     adding,
     userInfo,
+    units,
+    unit,
+    comments,
+    handleGetComments,
+    handlePostComment,
+    handleAddUnit,
+    handleEditUnit,
+    handleGetUnits,
+    handleGetSingleUnit,
     handleAddQuestion,
     handleCose,
     handleEditCourse,

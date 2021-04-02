@@ -1,8 +1,6 @@
 import { Box, Center, HStack, Stack, Text } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import OutlinedButton from '../../components/buttons/outlined.button';
-import SolidButton from '../../components/buttons/solid.button';
 import BoxCard from '../../components/cards/box.card';
 import ProfileLayout from '../../components/layouts/profile.layout';
 import CourseUtils from '../../utils/course.utils';

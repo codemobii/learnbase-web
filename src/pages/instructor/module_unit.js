@@ -18,59 +18,52 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Link, useParams } from 'react-router-dom';
 import BoxCard from '../../components/cards/box.card';
 import ListCard from '../../components/cards/list.card';
-import ModuleHeader from '../../components/headers/module.header';
 import ProfileLayout from '../../components/layouts/profile.layout';
-import ResultList from '../../components/modals/result_list.modal';
+import AddExercise from '../../components/modals/add_exercise.modal';
 import CourseUtils from '../../utils/course.utils';
 
-export default function InstructorCourse() {
+export default function ModuleUnits() {
   //
   const {
     loading,
-    modules,
+    units,
     course,
-    results,
+    handleGetUnits,
     handleGetCourseInstructor,
-    handleGetResultForModule,
   } = CourseUtils();
 
-  const { id } = useParams();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { moduleId, id } = useParams();
 
   //
   useEffect(() => {
     handleGetCourseInstructor(id);
+    handleGetUnits(moduleId);
   }, []);
 
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
   return (
-    <ProfileLayout module={<ModuleHeader course={course} />} isMain={false}>
+    <ProfileLayout isMain={false}>
       <BoxCard>
         <Box mb="50px">
           <ListCard
-            title="Modules"
-            button="Create module"
-            link={`/${id}/add_module`}
+            title={`${course.courseCode} units`}
+            button="Add unit"
+            link={`/courses/${id}/${moduleId}/units/add`}
           >
             <Table variant="striped" colorScheme="gray">
               <Thead>
                 <Tr rounded="md">
                   <Th>S/N</Th>
                   <Th>Title</Th>
-                  <Th>Date</Th>
-                  <Th isNumeric>Action</Th>
+                  <Th>Options</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {modules.map((e, index) => (
+                {units.map((e, index) => (
                   <Tr rounded="md" key={e._id}>
                     <Td>{index + 1}</Td>
                     <Td>{e.title}</Td>
-                    <Td>
-                      {'From: ' +
-                        new Date(e.startDate).toLocaleDateString() +
-                        ' To: ' +
-                        new Date(e.endDate).toLocaleDateString()}
-                    </Td>
                     <Td isNumeric>
                       <Menu>
                         <MenuButton
@@ -81,22 +74,14 @@ export default function InstructorCourse() {
                           variant="outline"
                         />
                         <MenuList>
-                          <Link to={`/courses/${id}/${e._id}/units`}>
-                            <MenuItem>Units</MenuItem>
-                          </Link>
-                          <Link to={`/courses/${id}/${e._id}/exercises`}>
-                            <MenuItem>Exercises</MenuItem>
-                          </Link>
-                          <MenuItem
-                            onClick={() => {
-                              handleGetResultForModule(e._id).then(() => {
-                                onOpen();
-                              });
-                            }}
+                          <Link
+                            to={`/courses/${id}/${moduleId}/units/${e._id}`}
                           >
-                            Results
-                          </MenuItem>
-                          <Link to={`/courses/${id}/${e._id}/edit`}>
+                            <MenuItem>Details</MenuItem>
+                          </Link>
+                          <Link
+                            to={`/courses/${id}/${moduleId}/units/${e._id}/edit`}
+                          >
                             <MenuItem>Edit</MenuItem>
                           </Link>
                         </MenuList>
@@ -109,7 +94,6 @@ export default function InstructorCourse() {
           </ListCard>
         </Box>
       </BoxCard>
-      <ResultList isOpen={isOpen} results={results} onClose={onClose} />
     </ProfileLayout>
   );
 }

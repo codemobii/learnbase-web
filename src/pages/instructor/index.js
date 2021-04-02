@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import InstructorCourseCard from '../../components/cards/instructor.course.card';
 import ListCard from '../../components/cards/list.card';
 import InstructorLayout from '../../components/layouts/instructor.layout';
+import ProfileLayout from '../../components/layouts/profile.layout';
 import CourseUtils from '../../utils/course.utils';
 
 export default function Profile() {
@@ -15,7 +16,7 @@ export default function Profile() {
   }, []);
 
   return (
-    <InstructorLayout isMain={true}>
+    <ProfileLayout isMain={true}>
       <SimpleGrid mb="30px" columns={['1', '1', '1']} spacing="6">
         <ListCard
           title="Courses"
@@ -35,6 +36,6 @@ export default function Profile() {
           </Stack>
         </ListCard>
       </SimpleGrid>
-    </InstructorLayout>
+    </ProfileLayout>
   );
 }
