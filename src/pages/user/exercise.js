@@ -53,7 +53,7 @@ export default function Exercise() {
   };
 
   return (
-    <ProfileLayout loading={loading} isMain={false}>
+    <ProfileLayout noHeading={true} loading={loading} isMain={false}>
       <BoxCard>
         <Stack spacing="6" mb="50px" p={['20px', '20px', '50px']}>
           {exercises.map(({ question, answers, correct, _id }) => (

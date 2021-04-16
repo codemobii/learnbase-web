@@ -12,6 +12,7 @@ export default function ProfileLayout({
   loading = false,
   module = false,
   isHeader = true,
+  noHeading = false,
 }) {
   return (
     <MainLayout>
@@ -20,8 +21,14 @@ export default function ProfileLayout({
           <LoaderPart />
         ) : (
           <>
-            {isHeader && <ProfileHeader module={module} isMain={isMain} />}
-            <Box mt={!isHeader && '100px'}>
+            {isHeader && (
+              <ProfileHeader
+                noHeading={noHeading}
+                module={module}
+                isMain={isMain}
+              />
+            )}
+            <Box pos="relative" mt={!isHeader && '100px'}>
               <PageWrapper loading={loading}>{children}</PageWrapper>
             </Box>
           </>

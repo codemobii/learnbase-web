@@ -31,6 +31,7 @@ import ViewResult from '../pages/instructor/view_result';
 import ModuleUnits from '../pages/instructor/module_unit';
 import AddUnit from '../pages/instructor/add_unit';
 import EditUnit from '../pages/instructor/edit_unit';
+import ProfileSettings from '../pages/user/profile';
 
 // Pricate route
 function PrivateRoute({ children, ...rest }) {
@@ -97,6 +98,9 @@ export default function Routes() {
             </PrivateRoute>
             <PrivateRoute path="/courses/:id/:moduleId/exercise/result/:resultId">
               <Result />
+            </PrivateRoute>
+            <PrivateRoute exact path="/profile">
+              <ProfileSettings />
             </PrivateRoute>
           </>
         ) : (

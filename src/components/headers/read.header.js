@@ -5,11 +5,13 @@ import { Box, Flex, Heading, Text } from '@chakra-ui/layout';
 import { Progress } from '@chakra-ui/progress';
 import React from 'react';
 import { BsChatDots, BsChevronLeft } from 'react-icons/bs';
+import { useHistory } from 'react-router';
 import TransparentButton from '../buttons/transparent.button';
 import CommentDrawer from '../drawers/comments.drawer';
 
 export default function ReadHeader({ title, progress = 0 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  let history = useHistory();
   return (
     <>
       <Box
@@ -30,7 +32,7 @@ export default function ReadHeader({ title, progress = 0 }) {
           maxW="container.xl"
         >
           <Flex align="center">
-            <CloseButton />
+            <CloseButton onClick={() => history.goBack()} />
             <Heading d={['none', 'none', 'block']} ml="20px" fontSize="lg">
               {title}
             </Heading>

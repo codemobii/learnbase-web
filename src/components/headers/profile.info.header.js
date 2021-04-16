@@ -65,7 +65,7 @@ export default function ProfileInfoHeader() {
                 {userInfo.email}
               </Text>
             </Box>
-            <HStack
+            {/* <HStack
               spacing="4"
               justify="center"
               align="flex-start"
@@ -84,7 +84,7 @@ export default function ProfileInfoHeader() {
                 size="sm"
                 color="whiteAlpha"
               />
-            </HStack>
+            </HStack> */}
           </Flex>
         </>
       )}

@@ -11,7 +11,8 @@ const ProfileUtils = () => {
 
   // State managers
 
-  const [updating, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [updating, setUpating] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [userInfo, setUserInfo] = useState({});
 
@@ -37,15 +38,11 @@ const ProfileUtils = () => {
           isClosable: true,
         });
       })
-      .finally(() =>
-        setTimeout(() => {
-          setLoading(false);
-        }, 6000)
-      );
+      .finally(() => setLoading(false));
   };
 
   const handleUpdateUser = async data => {
-    setLoading(true);
+    setUpating(true);
     await Axios({
       method: 'PUT',
       url: `${process.env.REACT_APP_API_URL}users/${user}`,
@@ -71,7 +68,7 @@ const ProfileUtils = () => {
           isClosable: true,
         });
       })
-      .finally(() => setLoading(false));
+      .finally(() => setUpating(false));
   };
 
   const handleProfilePicUpdate = async () => {
@@ -137,9 +134,10 @@ const ProfileUtils = () => {
   };
 
   return {
-    updating,
+    loading,
     userInfo,
     uploading,
+    updating,
     handleProfilePicUpdate,
     handleUpdateUser,
     handleGetUser,

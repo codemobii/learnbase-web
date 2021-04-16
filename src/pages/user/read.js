@@ -6,6 +6,7 @@ import CourseUtils from '../../utils/course.utils';
 import { Player, BigPlayButton } from 'video-react';
 import ReadHeader from '../../components/headers/read.header';
 import SolidButton from '../../components/buttons/solid.button';
+import LoaderPart from '../../components/parts/loader.part';
 
 export default function Read(props) {
   //
@@ -64,43 +65,47 @@ export default function Read(props) {
     <Box w="100%" bg="gray.50" pos="relative" h="100vh">
       <ReadHeader title={module.title} />
 
-      <Box pos="relative" py="120px" h="100vh" overflowX="hidden">
-        <Stack maxW="container.sm" m="auto" spacing="8" p="20px">
-          <Slider {...settings}>
-            {units.map((u, i) => (
-              <Stack spacing="20px" as="div">
-                <Box rounded="lg" w="100%" h="auto" bg="gray.700">
-                  <Player src={u.video}>
-                    <BigPlayButton position="center" />
-                  </Player>
-                </Box>
+      {loading ? (
+        <LoaderPart />
+      ) : (
+        <Box pos="relative" py="120px" h="100vh" overflowX="hidden">
+          <Stack maxW="container.sm" m="auto" spacing="8" p="20px">
+            <Slider {...settings}>
+              {units.map((u, i) => (
+                <Stack spacing="20px" as="div">
+                  <Box rounded="lg" w="100%" h="auto" bg="gray.700">
+                    <Player src={u.video}>
+                      <BigPlayButton position="center" />
+                    </Player>
+                  </Box>
 
+                  <Box>
+                    <Text fontSize="2xl" fontWeight="bold">
+                      {u.title}
+                    </Text>
+                  </Box>
+
+                  <Text>{u.desc}</Text>
+                </Stack>
+              ))}
+              <Stack textAlign="center" spacing="20px" as="div">
                 <Box>
                   <Text fontSize="2xl" fontWeight="bold">
-                    {u.title}
+                    Take module text
                   </Text>
+
+                  <Text>Click on the button below</Text>
                 </Box>
-
-                <Text>{u.desc}</Text>
+                <Center>
+                  <Link to={`/courses/${id}/${moduleId}/exercise`}>
+                    <SolidButton title="Take test" />
+                  </Link>
+                </Center>
               </Stack>
-            ))}
-            <Stack textAlign="center" spacing="20px" as="div">
-              <Box>
-                <Text fontSize="2xl" fontWeight="bold">
-                  Take module text
-                </Text>
-
-                <Text>Click on the button below</Text>
-              </Box>
-              <Center>
-                <Link to={`/courses/${id}/${moduleId}/exercise`}>
-                  <SolidButton title="Take test" />
-                </Link>
-              </Center>
-            </Stack>
-          </Slider>
-        </Stack>
-      </Box>
+            </Slider>
+          </Stack>
+        </Box>
+      )}
 
       {/*  */}
 

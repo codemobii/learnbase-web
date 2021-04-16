@@ -1,7 +1,8 @@
 import { Box } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
-import MainHeader from '../headers/main.header';
-import Footer from './footer.layout';
+// import MainHeader from '../headers/main.header';
+// import Footer from './footer.layout';
+import Tabs from './tabs.layout';
 
 export default function MainLayout({ children }) {
   useEffect(() => {
@@ -9,10 +10,9 @@ export default function MainLayout({ children }) {
   }, []);
 
   return (
-    <Box onContextMenu={false} bg="gray.100" pos="relative">
-      <MainHeader />
+    <Box pb="30px" onContextMenu={false} bg="gray.100" pos="relative">
       {children}
-      <Footer />
+      <Tabs />
     </Box>
   );
 }
